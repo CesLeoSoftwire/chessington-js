@@ -19,9 +19,9 @@ export default class Pawn extends Piece {
             let inFront = new Square(currentPosition.row-1, currentPosition.col);
             let twoInFront = new Square(currentPosition.row-2, currentPosition.col);
 
-            if(board.getPiece(inFront) == undefined) {
+            if(board.getPiece(inFront) === undefined) {
 
-                if (currentPosition.row == 6 && board.getPiece(twoInFront) == undefined) {
+                if (currentPosition.row === 6 && board.getPiece(twoInFront) === undefined) {
                     availableMoves.push(twoInFront);
                 }
 
@@ -70,5 +70,9 @@ export default class Pawn extends Piece {
         }
 
         return availableMoves;
+    }
+
+    public getPosition(board: Board): Square {
+        return board.findPiece(this);
     }
 }

@@ -8,13 +8,16 @@ describe('Pawn', () => {
 
     describe('white pawns', () => {
 
-        let board;
-        beforeEach(() => board = new Board());    
+        let board: Board;
+        beforeEach(() => board = new Board(Player.WHITE));
         
         it('can only move one square up if they have already moved', () => {
             const pawn = new Pawn(Player.WHITE);
             board.setPiece(Square.at(1, 0), pawn);
             pawn.moveTo(board, Square.at(2, 0));
+
+            console.log(pawn);
+            console.log(pawn.getPosition(board));
 
             const moves = pawn.getAvailableMoves(board);
             
@@ -36,18 +39,22 @@ describe('Pawn', () => {
 
     describe('black pawns', () => {
 
-        let board;
-        beforeEach(() => board = new Board(Player.BLACK));    
+        let board: Board;
+        beforeEach(() => board = new Board(Player.BLACK));
         
         it('can only move one square down if they have already moved', () => {
             const pawn = new Pawn(Player.BLACK);
-            board.setPiece(Square.at(6, 0), pawn);
-            pawn.moveTo(board, Square.at(5, 0));
+            board.setPiece(Square.at(5, 0), pawn);
+            pawn.moveTo(board, Square.at(4, 0));
+
+            console.log(pawn);
+            console.log(pawn.getPosition(board));
 
             const moves = pawn.getAvailableMoves(board);
-            
+
+            console.log(moves);
             moves.should.have.length(1);
-            moves.should.deep.include(Square.at(4, 0));
+            moves.should.deep.include(Square.at(3, 0));
         });
 
         it('can move one or two squares down on their first move', () => {
