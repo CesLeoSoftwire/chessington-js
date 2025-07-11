@@ -17,4 +17,12 @@ export default class Piece {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
     }
+
+    public isWhite (){
+        return this.player === Player.WHITE;
+    }
+
+    public isBlack (){
+        return this.player === Player.BLACK;
+    }
 }
